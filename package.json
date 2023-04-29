@@ -1,29 +1,21 @@
 {
-  "name": "tech-blog",
+  "name": "TechBlog-Database",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OmerMasih/tech-blog.git"
+    "url": "git+https://github.com/OmerMasih/TechBlog-Database.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/OmerMasih/tech-blog/issues"
+    "url": "https://github.com/OmerMasih/TechBlog-Database/issues"
   },
-  "homepage": "https://github.com/OmerMasih/tech-blog#readme",
-  "dependencies": {
-    "bcrypt": "^4.0.1",
-    "connect-session-sequelize": "^6.1.1",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^3.1.0",
-    "express-session": "^1.17.0",
-    "mysql2": "^2.0.1",
-    "sequelize": "^5.21.2"
-  }
+  "homepage": "https://github.com/OmerMasih/TechBlog-Database#readme"
 }
