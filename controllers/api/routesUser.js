@@ -1,26 +1,26 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-router.post('/', async (req, res) => {
+router.post('/', async function(req, res)  {
   try {
-    const createUser = await User.create({
+    const getAllUser = await User.create({
       username: req.body.username,
       password: req.body.password,
     });
 
-    req.session.save(() => {
-      req.session.userId = createUser.id;
-      req.session.username = createUser.username;
+    req.session.save (function() {
+      req.session.userId = getAllUser.id;
+      req.session.username = getAllUser.username;
       req.session.loggedIn = true;
 
-      res.json(createUser);
+      res.json(getAllUser);
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', async function(req, res) {
   try {
     const user = await User.findOne({
       where: {
@@ -29,14 +29,14 @@ router.post('/login', async (req, res) => {
     });
 
     if (!user) {
-      res.status(400).json({ message: 'No user account found!' });
+      res.status(400).json({ message: 'User account not found!' });
       return;
     }
 
-    const validPassword = user.checkPassword(req.body.password);
+    const createPassword = user.checkPassword(req.body.password);
 
-    if (!validPassword) {
-      res.status(400).json({ message: 'No user account found!' });
+    if (!createPassword) {
+      res.status(400).json({ message: 'User account not found!' });
       return;
     }
 
@@ -45,10 +45,10 @@ router.post('/login', async (req, res) => {
       req.session.username = user.username;
       req.session.loggedIn = true;
 
-      res.json({ user, message: 'You are now logged in!' });
+      res.json({ user, message: 'Now you are logged in!' });
     });
   } catch (err) {
-    res.status(400).json({ message: 'No user account found!' });
+    res.status(400).json({ message: 'User account not found!' });
   }
 });
 

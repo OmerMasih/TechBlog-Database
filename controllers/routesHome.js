@@ -4,11 +4,11 @@ const { Post, Comment, User } = require('../models/');
 // Sittings to get all posts for homepage!!
 router.get('/', async (req, res) => {
   try {
-    const dataPost = await Post.findAll({
+    const allPostData = await Post.findAll({
       include: [User],
     });
 
-    const newPost = dataPost.map((post) => post.get({ plain: true }));
+    const newPost = allPostData.map((post) => post.get({ plain: true }));
 
     res.render('all-user-posts', { newPost });
   } catch (err) {
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 // fetching single post
 router.get('/post/:id', async (req, res) => {
   try {
-    const dataPost = await Post.findByPk(req.params.id, {
+    const allPostData = await Post.findByPk(req.params.id, {
       include: [
         User,
         {
@@ -29,8 +29,8 @@ router.get('/post/:id', async (req, res) => {
       ],
     });
 
-    if (dataPost) {
-      const post = dataPost.get({ plain: true });
+    if (allPostData) {
+      const post = allPostData.get({ plain: true });
 
       res.render('single-post', { post });
     } else {
