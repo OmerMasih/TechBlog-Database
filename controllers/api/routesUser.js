@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-router.post('/', async function(req, res)  {
+router.post('/', async function(req, res) {
   try {
     const getAllUser = await User.create({
       username: req.body.username,
       password: req.body.password,
     });
 
-    req.session.save (function() {
+    req.session.save(function()  {
       req.session.userId = getAllUser.id;
       req.session.username = getAllUser.username;
       req.session.loggedIn = true;
@@ -29,14 +29,14 @@ router.post('/login', async function(req, res) {
     });
 
     if (!user) {
-      res.status(400).json({ message: 'User account not found!' });
+      res.status(400).json({ message: 'No user account found!' });
       return;
     }
 
     const createPassword = user.checkPassword(req.body.password);
 
     if (!createPassword) {
-      res.status(400).json({ message: 'User account not found!' });
+      res.status(400).json({ message: 'User account not found' });
       return;
     }
 
@@ -48,13 +48,13 @@ router.post('/login', async function(req, res) {
       res.json({ user, message: 'Now you are logged in!' });
     });
   } catch (err) {
-    res.status(400).json({ message: 'User account not found!' });
+    res.status(400).json({ message: 'User account not found' });
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', function(req, res) {
   if (req.session.loggedIn) {
-    req.session.destroy(() => {
+    req.session.destroy(function()  {
       res.status(204).end();
     });
   } else {

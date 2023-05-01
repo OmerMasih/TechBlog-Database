@@ -1,23 +1,23 @@
 const router = require('express').Router();
-const { Post, Comment, User } = require('../models/');
+const { Post, Comment, User } = require('../models');
 
 // Sittings to get all posts for homepage!!
-router.get('/', async (req, res) => {
+router.get('/', async function(req, res) {
   try {
     const allPostData = await Post.findAll({
       include: [User],
     });
 
-    const newPost = allPostData.map((post) => post.get({ plain: true }));
+    const posts = allPostData.map((post) => post.get({ plain: true }));
 
-    res.render('all-user-posts', { newPost });
+    res.render('all-user-posts', { posts });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // fetching single post
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', async function(req, res)  {
   try {
     const allPostData = await Post.findByPk(req.params.id, {
       include: [
@@ -32,7 +32,7 @@ router.get('/post/:id', async (req, res) => {
     if (allPostData) {
       const post = allPostData.get({ plain: true });
 
-      res.render('single-post', { post });
+      res.render('post-single', { post });
     } else {
       res.status(404).end();
     }
@@ -41,7 +41,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', function(req, res) {
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
@@ -50,7 +50,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/signup', (req, res) => {
+router.get('/signup', function(req, res) {
   if (req.session.loggedIn) {
     res.redirect('/');
     return;

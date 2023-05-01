@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { Post } = require('../models/');
+const { Post } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', withAuth, async  function(req, res) {
   try {
     const dataPost = await Post.findAll({
       where: {
@@ -21,20 +21,20 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/new', withAuth, (req, res) => {
+router.get('/new', withAuth, function(req, res)  {
   res.render('new-user-post', {
     layout: 'dashboard',
   });
 });
 
-router.get('/edit/:id', withAuth, async (req, res) => {
+router.get('/edit/:id', withAuth, async function(req, res) {
   try {
     const dataPost = await Post.findByPk(req.params.id);
 
     if (dataPost) {
       const post = dataPost.get({ plain: true });
 
-      res.render('edit-post', {
+      res.render('post-edit', {
         layout: 'dashboard',
         post,
       });
