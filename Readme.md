@@ -19,6 +19,15 @@ The users for this application are able to veiw, Create a post, update a post, l
 The following images shows the feature of the application.
 
 
+
+
+
+
+
+
+
+
+
 ## License
 
 This project is license under MIT
