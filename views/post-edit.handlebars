@@ -1,12 +1,12 @@
-<div class="post content-card">
+<div class="content-card">
   <div class="content-header">
-    <h2>Edit Post</h2>
+    <h2>Post Edit</h2>
   </div>
   <form id="post-edit" class="input-body">
-    <input type="hidden" name="input-post" value="{{post.id}}" />
+    <input type="hidden" name="post-id" value="{{post.id}}" />
 
-    <label class="lable-form" for="title-id">Title</label>
-    <input type="text" name="title-id" value="{{post.title}}" class="input-post" />
+    <label class="lable-form" for="input-id">Title</label>
+    <input type="text" name="input-id" value="{{post.title}}" class="input-post" />
 
     <label class="lable-form" for="body-form">Content</label>
     <textarea name="body-form" class="input-post">{{post.body}}</textarea>
