@@ -28,7 +28,7 @@ The following images shows the feature of the application.
 
 
 
-
+[Link to Heroku Application](https://tech-blog-database.herokuapp.com/)
 
 
 
